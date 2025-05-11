@@ -7,17 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C6C8B8A2DCE119F0057E543 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6C8B7E2DCE119F0057E543 /* UserDefaultsManager.swift */; };
+		1972F4A12DD07E49000381F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1972F4A02DD07E49000381F9 /* FirebaseAuth */; };
 		6C8A7E592DCD273B006C1061 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6C8A7E582DCD273B006C1061 /* Kingfisher */; };
-		6C8A7E5D2DCD2750006C1061 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A7E5A2DCD2750006C1061 /* APICaller.swift */; };
-		6C8A7E5F2DCD2750006C1061 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A7E5C2DCD2750006C1061 /* YoutubeSearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6C6C8B7E2DCE119F0057E543 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		6C8A7E332DCD25EA006C1061 /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C8A7E5A2DCD2750006C1061 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
-		6C8A7E5C2DCD2750006C1061 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -47,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C8A7E592DCD273B006C1061 /* Kingfisher in Frameworks */,
+				1972F4A12DD07E49000381F9 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,9 +54,6 @@
 			children = (
 				6C8A7E352DCD25EA006C1061 /* MovieProject */,
 				6C8A7E342DCD25EA006C1061 /* Services */,
-				6C8A7E5A2DCD2750006C1061 /* APICaller.swift */,
-				6C6C8B7E2DCE119F0057E543 /* UserDefaultsManager.swift */,
-				6C8A7E5C2DCD2750006C1061 /* YoutubeSearchResponse.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +86,7 @@
 			name = MovieProject;
 			packageProductDependencies = (
 				6C8A7E582DCD273B006C1061 /* Kingfisher */,
+				1972F4A02DD07E49000381F9 /* FirebaseAuth */,
 			);
 			productName = MovieProject;
 			productReference = 6C8A7E332DCD25EA006C1061 /* MovieProject.app */;
@@ -124,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6C8A7E572DCD273B006C1061 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1972F49F2DD07E49000381F9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6C8A7E342DCD25EA006C1061 /* Services */;
@@ -150,9 +145,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C8A7E5D2DCD2750006C1061 /* APICaller.swift in Sources */,
-				6C6C8B8A2DCE119F0057E543 /* UserDefaultsManager.swift in Sources */,
-				6C8A7E5F2DCD2750006C1061 /* YoutubeSearchResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +346,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1972F49F2DD07E49000381F9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
 		6C8A7E572DCD273B006C1061 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -365,6 +365,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1972F4A02DD07E49000381F9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1972F49F2DD07E49000381F9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		6C8A7E582DCD273B006C1061 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6C8A7E572DCD273B006C1061 /* XCRemoteSwiftPackageReference "Kingfisher" */;

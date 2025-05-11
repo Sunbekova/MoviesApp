@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileView: View {
     let userName: String
@@ -70,6 +71,25 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal, 8)
                 }
+                // Logout Button
+                Button(action: {
+                    do {
+                        try Auth.auth().signOut()
+                        isLoggedIn = false
+                    } catch {
+                        print("Error signing out: \(error.localizedDescription)")
+                    }
+                }) {
+                    Text("Logout")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                .padding(.bottom, 16)
+                
                 Spacer()
             }
         }

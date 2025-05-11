@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MovieApp: View {
+    @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var favoritesViewModel = FavoritesViewModel()
-    @State private var isLoggedIn = false
     @State private var showRegistration = false
-    @State private var tempEmail = ""
-    @State private var tempPassword = ""
-    @State private var tempName = ""
+    
+    @State private var isLoggedIn = Auth.auth().currentUser != nil
     
     init() {
         let appearance = UITabBarAppearance()
@@ -35,42 +35,36 @@ struct MovieApp: View {
     }
     
     var body: some View {
-        if !isLoggedIn {
-            AuthFlowView(
-                isLoggedIn: $isLoggedIn,
-                showRegistration: $showRegistration,
-                tempEmail: $tempEmail,
-                tempPassword: $tempPassword,
-                tempName: $tempName
-            )
-        } else {
-            TabView {
-                NavigationView {
-                    HomeView()
+            if authViewModel.isLoggedIn {
+                TabView {
+                    NavigationView {
+                        HomeView()
+                    }
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                    NavigationView {
+                        SearchView()
+                    }
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    ProfileView(
+                        userName: authViewModel.name,
+                        userEmail: authViewModel.email,
+                        memberSince: getMemberSinceDate(),
+                        userID: getRandomUserID(),
+                        isLoggedIn: $authViewModel.isLoggedIn
+                    )
+                    .tabItem {
+                        Label("User", systemImage: "person.crop.circle")
+                    }
                 }
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                NavigationView {
-                    SearchView()
-                }
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
-                ProfileView(
-                    userName: tempName,
-                    userEmail: tempEmail,
-                    memberSince: getMemberSinceDate(),
-                    userID: getRandomUserID(),
-                    isLoggedIn: $isLoggedIn
-                )
-                .tabItem {
-                    Label("User", systemImage: "person.crop.circle")
-                }
+                .environmentObject(favoritesViewModel)
+            } else {
+                AuthFlowView(viewModel: authViewModel, showRegistration: $showRegistration)
             }
-            .environmentObject(favoritesViewModel)
         }
-    }
 
     // Helper functions for memberSince and userID
     func getMemberSinceDate() -> String {
