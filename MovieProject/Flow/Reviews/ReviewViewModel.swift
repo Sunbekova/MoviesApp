@@ -35,6 +35,29 @@ class ReviewViewModel: ObservableObject {
                 }
             }
     }
+    
+    func fetchReviewsByUser(userId: String) {
+        listener?.remove()
+        listener = db.collection("reviews")
+            .whereField("userId", isEqualTo: userId)
+            .order(by: "timestamp", descending: true)
+            .addSnapshotListener { [weak self] snapshot, error in
+                if let error = error {
+                    print("Error fetching user reviews: \(error)")
+                    return
+                }
+
+                guard let documents = snapshot?.documents else {
+                    self?.reviews = []
+                    return
+                }
+
+                self?.reviews = documents.compactMap { doc in
+                    try? doc.data(as: Review.self)
+                }
+            }
+    }
+
 
     func addReview(movieId: String, rating: Int, comment: String, userName: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
