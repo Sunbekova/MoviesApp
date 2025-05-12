@@ -77,7 +77,7 @@ struct MovieFavoriteRow: View {
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
                         
-                        Text(movie.releaseDate ?? "Unknown")
+                        Text(movie.releaseDate)
                             .font(.system(size: 16))
                             .foregroundColor(.gray)
                         

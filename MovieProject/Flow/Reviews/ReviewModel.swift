@@ -15,5 +15,5 @@ struct Review: Identifiable, Codable {
     let userName: String
     let rating: Int
     let comment: String
-    let timestamp: Date
+    @ServerTimestamp var timestamp: Date?
 }

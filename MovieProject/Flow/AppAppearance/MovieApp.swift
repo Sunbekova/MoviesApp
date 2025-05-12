@@ -35,36 +35,41 @@ struct MovieApp: View {
     }
     
     var body: some View {
-            if authViewModel.isLoggedIn {
-                TabView {
-                    NavigationView {
-                        HomeView()
-                    }
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    NavigationView {
-                        SearchView()
-                    }
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                    ProfileView(
-                        userName: authViewModel.name,
-                        userEmail: authViewModel.email,
-                        memberSince: getMemberSinceDate(),
-                        userID: getRandomUserID(),
-                        isLoggedIn: $authViewModel.isLoggedIn
-                    )
-                    .tabItem {
-                        Label("User", systemImage: "person.crop.circle")
-                    }
+        if authViewModel.isLoggedIn {
+            TabView {
+                NavigationView {
+                    HomeView()
                 }
-                .environmentObject(favoritesViewModel)
-            } else {
-                AuthFlowView(viewModel: authViewModel, showRegistration: $showRegistration)
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+
+                NavigationView {
+                    SearchView()
+                }
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+
+                ProfileView(
+                    userEmail: authViewModel.email,
+                    memberSince: getMemberSinceDate(),
+                    userID: getRandomUserID(),
+                    isLoggedIn: $authViewModel.isLoggedIn
+                )
+                .tabItem {
+                    Label("User", systemImage: "person.crop.circle")
+                }
             }
+            .environmentObject(authViewModel)
+            .environmentObject(favoritesViewModel)
+        } else {
+            AuthFlowView(viewModel: authViewModel, showRegistration: $showRegistration)
+                .environmentObject(authViewModel)
+                .environmentObject(favoritesViewModel)
         }
+    }
+
 
     // Helper functions for memberSince and userID
     func getMemberSinceDate() -> String {

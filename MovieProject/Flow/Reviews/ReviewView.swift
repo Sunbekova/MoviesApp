@@ -27,9 +27,10 @@ struct ReviewView: View {
                         }
                         Text(review.comment)
                             .font(.body)
-                        Text(review.timestamp, style: .date)
+                        Text(review.timestamp ?? Date(), style: .date)
                             .font(.caption)
                             .foregroundColor(.gray)
+
                     }
                 }
                 .onDelete { indexSet in
@@ -58,5 +59,10 @@ struct ReviewView: View {
             viewModel.fetchReviews(for: String(movieId))
         }
         .navigationTitle("User Reviews")
+        
+        .onDisappear {
+            viewModel.reviews.removeAll()
+        }
+
     }
 }

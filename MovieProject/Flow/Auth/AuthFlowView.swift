@@ -6,6 +6,7 @@
 //  Rewrited by Aisha Suanbekova on 10.05.2025
 
 import SwiftUI
+import FirebaseAuth
 
 struct AuthFlowView: View {
     @ObservedObject var viewModel: AuthViewModel
@@ -13,7 +14,13 @@ struct AuthFlowView: View {
 
     var body: some View {
         if viewModel.isLoggedIn {
-            Text("Redirecting...")
+            ProfileView(
+                userEmail: viewModel.email,
+                memberSince: "2024", // Replace with actual data if you have it
+                userID: Auth.auth().currentUser?.uid ?? "",
+                isLoggedIn: $viewModel.isLoggedIn
+            )
+            .environmentObject(viewModel) // inject AuthViewModel
         } else {
             if showRegistration {
                 RegistrationView(viewModel: viewModel, showRegistration: $showRegistration)
@@ -23,4 +30,3 @@ struct AuthFlowView: View {
         }
     }
 }
-

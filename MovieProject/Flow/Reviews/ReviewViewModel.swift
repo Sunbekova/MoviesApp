@@ -12,34 +12,43 @@ import FirebaseAuth
 class ReviewViewModel: ObservableObject {
     @Published var reviews: [Review] = []
     private var db = Firestore.firestore()
-    
+    private var listener: ListenerRegistration?
+
     func fetchReviews(for movieId: String) {
-        db.collection("reviews")
+        listener?.remove()
+        listener = db.collection("reviews")
             .whereField("movieId", isEqualTo: movieId)
             .order(by: "timestamp", descending: true)
-            .addSnapshotListener { snapshot, error in
+            .addSnapshotListener { [weak self] snapshot, error in
                 if let error = error {
                     print("Error fetching reviews: \(error)")
                     return
                 }
-                self.reviews = snapshot?.documents.compactMap {
-                    try? $0.data(as: Review.self)
-                } ?? []
+
+                guard let documents = snapshot?.documents else {
+                    self?.reviews = []
+                    return
+                }
+
+                self?.reviews = documents.compactMap { doc in
+                    try? doc.data(as: Review.self)
+                }
             }
     }
 
     func addReview(movieId: String, rating: Int, comment: String, userName: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
-        
+
         let review = Review(
+            id: nil,
             movieId: movieId,
             userId: userId,
             userName: userName,
             rating: rating,
             comment: comment,
-            timestamp: Date()
+            timestamp: nil // Firestore assign server timestamp
         )
-        
+
         do {
             _ = try db.collection("reviews").addDocument(from: review)
         } catch {
@@ -57,7 +66,11 @@ class ReviewViewModel: ObservableObject {
         db.collection("reviews").document(id).updateData([
             "comment": newComment,
             "rating": newRating,
-            "timestamp": Date()
+            "timestamp": FieldValue.serverTimestamp()
         ])
+    }
+
+    deinit {
+        listener?.remove()
     }
 }

@@ -66,9 +66,18 @@ class AuthViewModel: ObservableObject {
             if let error = error {
                 self?.errorMessage = "Registration failed: \(error.localizedDescription)"
                 self?.showError = true
-            } else {
-                self?.errorMessage = "Registered successfully! Please login."
-                self?.showError = true
+            } else if let user = result?.user {
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = self?.name
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        self?.errorMessage = "Failed to save display name: \(error.localizedDescription)"
+                        self?.showError = true
+                    } else {
+                        self?.errorMessage = "Registered successfully! Please login."
+                        self?.showError = true
+                    }
+                }
             }
         }
     }

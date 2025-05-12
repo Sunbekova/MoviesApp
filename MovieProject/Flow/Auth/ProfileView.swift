@@ -3,18 +3,19 @@
 //  MovieProject
 //
 //  Created by Polina Stelmakh on 09.05.2025.
-//
+//  Added some func by Aisha on 11.05.2025
 
 import SwiftUI
 import FirebaseAuth
 
 struct ProfileView: View {
-    let userName: String
     let userEmail: String
     let memberSince: String
     let userID: String
     @Binding var isLoggedIn: Bool
     @EnvironmentObject var favoritesViewModel: FavoritesViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     
     let burgundyColor = Color(red: 37/255, green: 10/255, blue: 2/255)
     let accentColor = Color.red
@@ -29,7 +30,7 @@ struct ProfileView: View {
                     .frame(width: 100, height: 100)
                     .foregroundColor(.white.opacity(0.9))
                     .shadow(radius: 10)
-                Text(userName.isEmpty ? "Your Name" : userName)
+                Text(authViewModel.name.isEmpty ? "Your Name" : authViewModel.name)
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
