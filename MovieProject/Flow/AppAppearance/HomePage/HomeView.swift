@@ -1,184 +1,201 @@
 import SwiftUI
 import Kingfisher
-import WebKit
 
 struct HomeView: View {
     @State private var trendingMovies: [Title] = []
     @State private var topMovies: [Title] = []
+    @State private var topTVShows: [Title] = []
+    @State private var ongoingTVShows: [Title] = []
+    @State private var posterImages: [String] = []
+    @State private var selectedPosterIndex: Int = 0
 
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
-                    CollapsingHeader()
-                        .frame(height: 350)
+                    // Featured movies carousel
+                    if !trendingMovies.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("This Week")
+                                .font(.title2)
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
 
-                    VStack(alignment: .leading) {
-                        Text("Top 10 Movies")
+                            CarouselView(
+                                movies: Array(trendingMovies.prefix(5)),
+                                selectedIndex: $selectedPosterIndex,
+                                geometry: geometry
+                            )
+                            .frame(height: 350)
+                        }
+                    }
+
+
+                    // Top 10 Movies
+                    SectionView(title: "Top 10 Movies", items: topMovies)
+
+                    // Top 10 TV Shows
+                    SectionView(title: "Top 10 TV Shows", items: topTVShows)
+
+                    // Trending Movies list
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Trending Movies")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.white)
-                            .padding(.leading)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 16) {
-                                ForEach(topMovies, id: \.id) { movie in
-                                    NavigationLink(destination: MovieDetailsView(movie: movie)) {
-                                        KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")"))
-                                            .placeholder { Image(systemName: "photo.artframe") }
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 110, height: 160)
-                                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                                            .shadow(radius: 6)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                        .frame(height: 180)
-                    }
-                    .padding(.top, 16)
-                    .padding(.bottom, 16)
+                            .padding(.top)
 
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Trending Movies")
-                            .font(.title)
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding([.leading, .top])
                         ForEach(trendingMovies, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(movie: movie)) {
                                 MovieRow(movie: movie)
-                                    .padding(.bottom, 10)
+                                    .padding(.bottom, -20)
                                     .foregroundColor(.white)
                             }
                         }
                     }
-                    .padding(.leading)
+                    .padding(.horizontal)
                 }
             }
-            .background(Color(red: 37/255, green: 10/255, blue: 2/255).edgesIgnoringSafeArea(.all))
+            .background(Color.black.edgesIgnoringSafeArea(.all))
             .onAppear {
                 fetchTrendingMovies()
                 fetchTopMovies()
+                fetchTopTVShows()
+                fetchOngoingTVShows()
             }
         }
     }
 
     private func fetchTrendingMovies() {
         APICaller.shared.getTrendingMovies { result in
-            switch result {
-            case .success(let titles):
+            if case .success(let titles) = result {
                 trendingMovies = titles
-            case .failure(let error):
-                print("Error loading movies: \(error.localizedDescription)")
             }
         }
     }
 
     private func fetchTopMovies() {
         APICaller.shared.getTrendingMovies { result in
-            switch result {
-            case .success(let titles):
+            if case .success(let titles) = result {
                 topMovies = Array(titles.prefix(10))
-            case .failure(let error):
-                print("Error loading top movies: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func fetchTopTVShows() {
+        APICaller.shared.getTopTVShows { result in
+            if case .success(let shows) = result {
+                topTVShows = Array(shows.prefix(10))
+            }
+        }
+    }
+
+    private func fetchOngoingTVShows() {
+        APICaller.shared.getOngoingTVShows { result in
+            if case .success(let shows) = result {
+                ongoingTVShows = shows
             }
         }
     }
 }
 
-struct CollapsingHeader: View {
+struct CarouselView: View {
+    var movies: [Title]
+    @Binding var selectedIndex: Int
+    var geometry: GeometryProxy
+    
     var body: some View {
-        GeometryReader { geo in
-            let minY = geo.frame(in: .global).minY
-            Image("homepic4")
-                .resizable()
-                .scaledToFill()
-                .frame(width: geo.size.width, height: minY > 0 ? 350 + minY : 350)
-                .clipped()
-                .offset(y: minY > 0 ? -minY : 0)
-                .ignoresSafeArea(edges: .top)
-        }
-        .frame(height: 350)
-    }
-}
+        VStack(spacing: 8) {
+            TabView(selection: $selectedIndex) {
+                ForEach(Array(movies.prefix(3)).indices, id: \.self) { index in
+                    if let posterPath = movies[index].poster_path {
+                        KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)"))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geometry.size.width * 0.9, height: 300)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .shadow(radius: 6)
+                            .clipped()
+                            .tag(index)
+                    } else {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.gray)
+                            .frame(width: geometry.size.width * 0.9, height: 300)
+                            .tag(index)
+                    }
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .frame(height: 300)
 
-struct UserFormView: View {
-    @Binding var userName: String
-    @Binding var userEmail: String
-    
-    let burgundyColor = Color(red: 37/255, green: 10/255, blue: 2/255)
-    let whiteColor = Color.white
-    let accentColor = Color.red
-    
-    var body: some View {
-        ZStack {
-            burgundyColor
-                .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 32) {
-                Spacer()
-                Image(systemName: "person.crop.circle.fill")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .foregroundColor(.white.opacity(0.8))
-                    .shadow(radius: 8)
-                    .padding(.bottom, 8)
-                Text("Welcome")
-                    .font(.largeTitle).bold()
+            // Название фильма ЖИРНЫМ
+            if movies.indices.contains(selectedIndex) {
+                Text(movies[selectedIndex].title)
+                    .font(.headline)
+                    .bold()
                     .foregroundColor(.white)
-                VStack(spacing: 20) {
-                    CustomTextField(placeholder: "Name", text: $userName)
-                        .autocapitalization(.words)
-                    CustomTextField(placeholder: "Email", text: $userEmail)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                }
-                .padding(.horizontal, 24)
-                Button(action: {
-                    print("User Name: \(userName), Email: \(userEmail)")
-                }) {
-                    Text("Sign Up / Sign In")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [accentColor, accentColor.opacity(0.7)]), startPoint: .leading, endPoint: .trailing)
-                        )
-                        .cornerRadius(14)
-                        .shadow(color: accentColor.opacity(0.4), radius: 8, x: 0, y: 4)
-                }
-                .padding(.horizontal, 24)
-                Spacer()
+                    .multilineTextAlignment(.center)
+                    .frame(width: geometry.size.width * 0.9)
             }
         }
+        .frame(height: 340) // 300 постер + 40 для текста и индикатора
     }
 }
 
-struct CustomTextField: View {
-    var placeholder: String
-    @Binding var text: String
-    let burgundyColor = Color(red: 37/255, green: 10/255, blue: 2/255)
-    let whiteColor = Color.white
+
+    
+    private func formattedReleaseDate(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "IN CINEMAS & IMAX MMMM d"
+            return dateFormatter.string(from: date).uppercased()
+        }
+        return "COMING SOON"
+    }
+
+
+// MARK: - Section View
+struct SectionView: View {
+    var title: String
+    var items: [Title]
     
     var body: some View {
-        TextField(placeholder, text: $text)
-            .foregroundColor(whiteColor)
-            .padding()
-            .background(burgundyColor.opacity(0.7))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(whiteColor.opacity(0.5), lineWidth: 1)
-            )
-            .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.title2)
+                .bold()
+                .foregroundColor(.white)
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    ForEach(items, id: \.id) { item in
+                        NavigationLink(destination: MovieDetailsView(movie: item)) {
+                            VStack(spacing: 8) {
+                                KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")"))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 150, height: 220)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .shadow(color: .white.opacity(0.2), radius: 6, x: 0, y: 2)
+                                
+                                Text(item.title)
+                                    .font(.subheadline)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 150)
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+        }
+        .padding(.bottom, 24)
     }
 }
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
-

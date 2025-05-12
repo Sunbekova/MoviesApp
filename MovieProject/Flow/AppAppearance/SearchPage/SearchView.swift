@@ -9,17 +9,29 @@ struct SearchView: View {
 
     var body: some View {
         VStack {
+            // Заголовок
+            HStack {
+                Text("Search")
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .bold()
+                    .padding(.leading, 20)
+                Spacer()
+            }
+            .padding(.top, 50)
+
+            // Поле поиска
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
                     .padding(.leading, 12)
-                
+
                 TextField("Search", text: $searchText, onCommit: {
                     searchMovies(query: searchText)
                 })
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.vertical, 10)
-                
+
                 if !searchText.isEmpty {
                     Button(action: {
                         searchText = ""
@@ -34,6 +46,7 @@ struct SearchView: View {
             .cornerRadius(10)
             .padding([.horizontal, .top])
 
+            // Индикатор загрузки, ошибка или пустой результат
             if isLoading {
                 ProgressView("Searching...")
                     .foregroundColor(.gray)
@@ -49,7 +62,7 @@ struct SearchView: View {
                         .foregroundColor(.gray)
                     Text("Your search results will be displayed here.")
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.white)
                 }
                 .padding()
             } else {
@@ -58,16 +71,20 @@ struct SearchView: View {
                         MovieRow(movie: movie)
                             .foregroundColor(.white)
                     }
-                    .listRowBackground(Color(red: 37/255, green: 10/255, blue: 2/255))
+                    .listRowBackground(Color.clear)
                 }
                 .listStyle(PlainListStyle())
             }
 
             Spacer()
         }
-        .navigationTitle("Search")
-        .foregroundColor(.white)
-        .background(Color(red: 37/255, green: 10/255, blue: 2/255).edgesIgnoringSafeArea(.all))
+        .navigationTitle("")
+        .background(Color.black.edgesIgnoringSafeArea(.all))
+
+
+
+
+
     }
 
     private func searchMovies(query: String) {
