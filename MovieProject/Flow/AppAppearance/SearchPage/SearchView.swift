@@ -15,6 +15,8 @@ struct SearchView: View {
     @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
     @State private var minRating: Double = 0.0
     @State private var searchHistory: [String] = []
+    
+    
 
     enum MovieCategory: String, CaseIterable {
         case trending = "Trending Now"
@@ -24,6 +26,7 @@ struct SearchView: View {
 
     var body: some View {
         VStack {
+            BackgroundView()
             HStack {
                 Text("Search")
                     .foregroundColor(.white)
@@ -467,5 +470,35 @@ struct CategoryDetailView: View {
         }
         .navigationTitle(category.rawValue)
         .background(Color.black.edgesIgnoringSafeArea(.all))
+    }
+    
+    struct BackgroundView: View {
+        var body: some View {
+            ZStack {
+                // Линейный градиент — от темно-красно-коричневого к чуть светлее
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 0.14, green: 0.04, blue: 0.01), // #250A02
+                        Color(red: 0.25, green: 0.06, blue: 0.02)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .edgesIgnoringSafeArea(.all)
+
+                // Радикальный градиент — белое сияние снизу слева
+                RadialGradient(
+                    gradient: Gradient(colors: [
+                        Color.white.opacity(0.9),
+                        Color.clear
+                    ]),
+                    center: .bottomLeading,
+                    startRadius: 5,
+                    endRadius: 400
+                )
+                .blendMode(.overlay) // Наложение для мягкого свечения
+                .edgesIgnoringSafeArea(.all)
+            }
+        }
     }
 }
