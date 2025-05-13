@@ -5,13 +5,6 @@ MoviesProject is an elegant iOS app built with **Swift** that allows users to br
 ---
 
 
-### 🔎 Search View
-
-| Image 1 | Image 2 | Image 3 |
-|---------|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/2658f352-eec1-490d-b358-91ffd6db95f7) | ![Image 2](https://github.com/user-attachments/assets/0a36dbf4-d2a3-42a5-8da9-aac4685f3359) | ![Image 3](https://github.com/user-attachments/assets/6c864c9e-8015-4cbe-aa72-a1eefa0852f0) |
-
-
 
 ### 🎥 **Demo Video**
 
@@ -26,6 +19,12 @@ MoviesProject is an elegant iOS app built with **Swift** that allows users to br
 
 
 
+
+### 🔎 Search View
+
+| Image 1 | Image 2 | Image 3 |
+|---------|---------|---------|
+| ![Image 1](https://github.com/user-attachments/assets/2658f352-eec1-490d-b358-91ffd6db95f7) | ![Image 2](https://github.com/user-attachments/assets/0a36dbf4-d2a3-42a5-8da9-aac4685f3359) | ![Image 3](https://github.com/user-attachments/assets/6c864c9e-8015-4cbe-aa72-a1eefa0852f0) |
 
 ---
 
