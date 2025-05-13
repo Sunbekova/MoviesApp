@@ -13,13 +13,15 @@ MoviesProject is an elegant iOS app built with **Swift** that allows users to br
 
 
 
-🎥 **Demo Video**  
+### 🎥 **Demo Video**
 
 | Demo Video 1 | Demo Video 2 | Demo Video 3 |
 |--------------|--------------|--------------|
 | [![Watch Demo](https://github.com/user-attachments/assets/b1864a55-6fe9-4745-9c7a-5d93c0397abc)](https://github.com/user-attachments/assets/6ae59bf2-9f5c-485d-b05b-c988f10f4020) | [![Watch Demo](https://github.com/user-attachments/assets/cd039053-cb3d-46f9-82d7-fa7dcdaee536)](https://github.com/user-attachments/assets/cf90c9f5-6e77-4a83-85f5-1e8cd2c88941) | [![Watch Demo](https://github.com/user-attachments/assets/8e8e2954-d257-4c20-b548-25da44506d14)](https://github.com/user-attachments/assets/57dcf3cf-8131-4c62-ad31-ca33d313ab06) |
 
-
+| Demo Video 4 | Demo Video 5 | Demo Video 6 |
+|--------------|--------------|--------------|
+| [![Watch Demo](https://github.com/user-attachments/assets/f68a6efd-d1dc-4404-bba5-76dcdfeed0b2)](https://github.com/user-attachments/assets/f68a6efd-d1dc-4404-bba5-76dcdfeed0b2) | [![Watch Demo](https://github.com/user-attachments/assets/26a9b2b8-b3cb-4037-90f3-7c89e1e08a4f)](https://github.com/user-attachments/assets/26a9b2b8-b3cb-4037-90f3-7c89e1e08a4f) | [![Watch Demo](https://github.com/user-attachments/assets/51da7010-cd66-44a1-b2ff-1425b0c06a7d)](https://github.com/user-attachments/assets/51da7010-cd66-44a1-b2ff-1425b0c06a7d) |
 
 
 
