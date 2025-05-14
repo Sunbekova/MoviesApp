@@ -4,27 +4,72 @@ MoviesProject is an elegant iOS app built with **Swift** that allows users to br
 
 ---
 
+### 🎥 Demo Video
 
+<table>
+  <tr>
+    <td><a href="https://github.com/user-attachments/assets/4ddbadb9-32ea-437f-a1a6-fd8dd1b541c3"><img src="https://github.com/user-attachments/assets/4ddbadb9-32ea-437f-a1a6-fd8dd1b541c3" width="200"/></a></td>
+    <td><a href="https://github.com/user-attachments/assets/ec2b17f3-d9b4-40b5-8a31-6867f9a47c69"><img src="https://github.com/user-attachments/assets/ec2b17f3-d9b4-40b5-8a31-6867f9a47c69" width="200"/></a></td>
+    <td><a href="https://github.com/user-attachments/assets/ef18f163-25e8-49cb-9d9a-b2ad0b336834"><img src="https://github.com/user-attachments/assets/ef18f163-25e8-49cb-9d9a-b2ad0b336834" width="200"/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/user-attachments/assets/153223c0-344c-4d49-b5c7-025587b8ef66"><img src="https://github.com/user-attachments/assets/153223c0-344c-4d49-b5c7-025587b8ef66" width="200"/></a></td>
+    <td><a href="https://github.com/user-attachments/assets/3b4f4d23-1ad5-405a-bd60-0aac5b76140f"><img src="https://github.com/user-attachments/assets/3b4f4d23-1ad5-405a-bd60-0aac5b76140f" width="200"/></a></td>
+    <td><a href="https://github.com/user-attachments/assets/e6ce4529-123e-4274-8ea1-1a1b19e65487"><img src="https://github.com/user-attachments/assets/e6ce4529-123e-4274-8ea1-1a1b19e65487" width="200"/></a></td>
+  </tr>
+</table>
 
-### 🎥 **Demo Video**
+---
 
-| Demo Video 1 | Demo Video 2 | Demo Video 3 |
-|--------------|--------------|--------------|
-| [![Watch Demo](https://github.com/user-attachments/assets/b1864a55-6fe9-4745-9c7a-5d93c0397abc)](https://github.com/user-attachments/assets/6ae59bf2-9f5c-485d-b05b-c988f10f4020) | [![Watch Demo](https://github.com/user-attachments/assets/cd039053-cb3d-46f9-82d7-fa7dcdaee536)](https://github.com/user-attachments/assets/cf90c9f5-6e77-4a83-85f5-1e8cd2c88941) | [![Watch Demo](https://github.com/user-attachments/assets/8e8e2954-d257-4c20-b548-25da44506d14)](https://github.com/user-attachments/assets/57dcf3cf-8131-4c62-ad31-ca33d313ab06) |
+## 📱 Screenshots
 
-| Demo Video 4 | Demo Video 5 | Demo Video 6 |
-|--------------|--------------|--------------|
-| [![Watch Demo](https://github.com/user-attachments/assets/f68a6efd-d1dc-4404-bba5-76dcdfeed0b2)](https://github.com/user-attachments/assets/f68a6efd-d1dc-4404-bba5-76dcdfeed0b2) | [![Watch Demo](https://github.com/user-attachments/assets/26a9b2b8-b3cb-4037-90f3-7c89e1e08a4f)](https://github.com/user-attachments/assets/26a9b2b8-b3cb-4037-90f3-7c89e1e08a4f) | [![Watch Demo](https://github.com/user-attachments/assets/51da7010-cd66-44a1-b2ff-1425b0c06a7d)](https://github.com/user-attachments/assets/51da7010-cd66-44a1-b2ff-1425b0c06a7d) |
+### 🏠 Home View
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/45663d89-7063-4a40-8de1-9bad79413391" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/2131ec95-52a0-4b50-94ad-30309ecb3acc" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/6c5ff19e-99b6-4758-b041-339786ff4c11" width="200"/></td>
+  </tr>
+</table>
 
+### 🎬 Movie Detail View
 
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/b5fa2a54-e97e-4e1f-9de2-56b3dba0dd89" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/e0ee8f9f-f566-473d-aa49-bbb134d3562d" width="200"/></td>
+  </tr>
+</table>
 
+### 📝 Reviews View
 
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/b6aa85bf-9d9e-4ac5-ad10-b93c702a2652" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/2a2a786a-7f1f-4294-a0fc-73b4c17f1cb6" width="200"/></td>       
+    <td><img src="https://github.com/user-attachments/assets/2413e66b-7a47-4fbd-b145-0662909660e1" width="200"/></td>
+
+  </tr>
+</table>
 
 ### 🔎 Search View
 
-| Image 1 | Image 2 | Image 3 |
-|---------|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/2658f352-eec1-490d-b358-91ffd6db95f7) | ![Image 2](https://github.com/user-attachments/assets/0a36dbf4-d2a3-42a5-8da9-aac4685f3359) | ![Image 3](https://github.com/user-attachments/assets/6c864c9e-8015-4cbe-aa72-a1eefa0852f0) |
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/1fe904c6-0ac5-40c2-9b11-dacb45023492" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/d026ad87-fa12-4c69-afa5-4cefb5d75c35" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/ff77a55e-8007-409c-8f6a-a6ab4ba29526" width="200"/></td>
+  </tr>
+</table>
+
+### 🔐 Login View
+
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/73c3f540-1442-4379-b94c-4056d0de93ca" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/c0e4a262-946a-4f71-9c23-0b9c65a53c18" width="200"/></td>
+  </tr>
+</table>
 
 ---
 
@@ -38,48 +83,7 @@ MoviesProject is an elegant iOS app built with **Swift** that allows users to br
 | 📝 Add & View Reviews         | Store and display user reviews using **Firebase Firestore**                |
 | 🔐 Authenticated Reviews      | Only the user who wrote the review can delete it (**Firebase Auth**)       |
 
-
-
-## 📱 Screenshots
-
-### 🏠 Home View
-
-| Image 1 | Image 2 | Image 3 |
-|---------|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/0ec4ae7c-f792-4382-b2d9-d03435e0e2bf) | ![Image 2](https://github.com/user-attachments/assets/a63cf133-bb57-4a45-a5f7-ce39189b3fb1) | ![Image 3](https://github.com/user-attachments/assets/c57d1b76-e3ed-41bb-a3ea-66b09a269660) |
-
 ---
-
-### 🎬 Movie Detail View
-
-| Image 1 | Image 2 | Image 3 |
-|---------|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/893a3279-1ef4-4caa-9873-98b55e6c7294) | ![Image 2](https://github.com/user-attachments/assets/78e8d319-f2ad-44bf-8bba-5a76b2e5d02e) | ![Image 3](https://github.com/user-attachments/assets/dcc07d8b-6da8-43c7-8a41-24cb0e588f88) |
-
----
-
-### 🔎 Search View
-
-| Image 1 | Image 2 | Image 3 |
-|---------|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/2658f352-eec1-490d-b358-91ffd6db95f7) | ![Image 2](https://github.com/user-attachments/assets/0a36dbf4-d2a3-42a5-8da9-aac4685f3359) | ![Image 3](https://github.com/user-attachments/assets/6c864c9e-8015-4cbe-aa72-a1eefa0852f0) |
-
----
-
-### 📝 Reviews View
-
-| Image 1 | Image 2 |
-|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/6bb98b4e-68e8-4738-97ed-917a6c4d5da4) | ![Image 2](https://github.com/user-attachments/assets/955e45fe-d29e-4d0c-ade6-e78794458309) |
-
----
-
-### 🔐 Login View
-
-| Image 1 | Image 2 |
-|---------|---------|
-| ![Image 1](https://github.com/user-attachments/assets/a9c6f9e8-064d-4373-8ed3-e3283f583d18) | ![Image 2](https://github.com/user-attachments/assets/9b3a6e87-1980-4bab-91e8-95cbd0dadc06) |
-
 
 ## 🧱 App Architecture
 
@@ -91,8 +95,13 @@ The project follows the **MVVM** architecture pattern:
 | `ViewModel` | Handles business logic, API calls, and Firebase operations                         |
 | `View`      | SwiftUI / UIKit views for displaying trending movies, details, reviews, etc.       |
 
-🔗 **Navigation flow** is simple and intuitive:
-```plaintext
-Home → Search → Movie Detail → Watch Trailer / Leave Review
-                         ↑
-                   Favorites (local)
+---
+
+## Project Members
+| Full Name | ID | GitHub |
+|-----------|----|--------|
+| Suanbekova Aisha | 22B030589 | [Suanbekova](https://github.com/Sunbekova/) |
+| Tulepbergen Anel | 22B030602| [Tulepbergen](https://github.com/tttulepbergen) |
+| Stelmakh Polina | 22B030588 | [Stelmakh](https://github.com/po133na) |
+
+
